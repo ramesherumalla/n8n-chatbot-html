@@ -1,8 +1,6 @@
 # n8n-chatbot-html
 🚀 HTML website integrated with n8n chatbot workflows
 
-## 🔗 Live Demo
-[View Website](https://ramesherumalla.github.io/n8n-chatbot-html)
 
 ## 📂 Project Overview
 - Built with HTML
