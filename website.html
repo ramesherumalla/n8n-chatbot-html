@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HiFi EdTech | Learn Today. Build Tomorrow.</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform duration-200">
+            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-700 bg-clip-text text-transparent">
+              HiFi <span class="text-indigo-600">EdTech</span>
+            </span>
+            <span class="text-[10px] tracking-wider uppercase font-semibold text-slate-500 -mt-1">
+              Learn Today. Build Tomorrow.
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+          <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
+          <a href="#about" class="hover:text-indigo-600 transition-colors">About</a>
+          <a href="#courses" class="hover:text-indigo-600 transition-colors">Courses</a>
+          <a href="#why-hifi" class="hover:text-indigo-600 transition-colors">Why HiFi</a>
+          <a href="#faq" class="hover:text-indigo-600 transition-colors">FAQ</a>
+          <a href="#contact" class="hover:text-indigo-600 transition-colors">Contact</a>
+        </nav>
+
+        <!-- Desktop Actions -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#courses" class="px-4 py-2.5 rounded-lg border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-100 transition-all shadow-xs">
+            Explore Courses
+          </a>
+          <button onclick="toggleChatbot(true)" class="px-4 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm flex items-center gap-2 shadow-md shadow-indigo-200 transition-all hover:-translate-y-0.5">
+            <i data-lucide="bot" class="w-4 h-4"></i>
+            Talk to AI
+          </button>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="md:hidden flex items-center gap-2">
+          <button onclick="toggleChatbot(true)" class="p-2 rounded-lg bg-indigo-50 text-indigo-600 font-medium text-xs flex items-center gap-1">
+            <i data-lucide="bot" class="w-4 h-4"></i> AI
+          </button>
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Menu">
+            <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+      <a href="#home" onclick="toggleMobileMenu(false)" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Home</a>
+      <a href="#about" onclick="toggleMobileMenu(false)" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">About</a>
+      <a href="#courses" onclick="toggleMobileMenu(false)" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Courses</a>
+      <a href="#why-hifi" onclick="toggleMobileMenu(false)" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Why HiFi</a>
+      <a href="#faq" onclick="toggleMobileMenu(false)" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">FAQ</a>
+      <a href="#contact" onclick="toggleMobileMenu(false)" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Contact</a>
+      <div class="pt-2 flex flex-col gap-2">
+        <a href="#courses" onclick="toggleMobileMenu(false)" class="w-full py-2.5 text-center rounded-lg border border-slate-300 text-slate-700 font-semibold text-sm">
+          Explore Courses
+        </a>
+        <button onclick="toggleMobileMenu(false); toggleChatbot(true);" class="w-full py-2.5 text-center rounded-lg bg-indigo-600 text-white font-semibold text-sm flex items-center justify-center gap-2">
+          <i data-lucide="bot" class="w-4 h-4"></i> Talk to AI Mentor
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-indigo-50/60 via-white to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text Content -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-100/80 border border-indigo-200 text-indigo-800 text-xs font-semibold tracking-wide shadow-xs">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i>
+            <span>Next-Gen Tech Training Institute</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            Build Skills. <br class="hidden sm:inline" />
+            <span class="bg-gradient-to-r from-indigo-600 via-blue-600 to-teal-500 bg-clip-text text-transparent">
+              Build Your Career.
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Learn industry-relevant skills through practical training, real-world projects, expert guidance, and career-focused learning at HiFi EdTech.
+          </p>
+
+          <!-- Hero CTAs -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#courses" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-200 hover:shadow-indigo-300 transition-all hover:-translate-y-0.5">
+              Explore Courses
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <button onclick="toggleChatbot(true)" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-slate-200 transition-all hover:-translate-y-0.5">
+              <i data-lucide="bot" class="w-5 h-5 text-indigo-400"></i>
+              Talk to AI Mentor
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="pt-6 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+            <div class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-xs font-bold text-slate-800">Practical Learning</p>
+                <p class="text-[11px] text-slate-500">Hands-on tasks</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-xs font-bold text-slate-800">Industry-Relevant</p>
+                <p class="text-[11px] text-slate-500">Modern Tech Stack</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-xs font-bold text-slate-800">Real-World Projects</p>
+                <p class="text-[11px] text-slate-500">Portfolio Ready</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-xs font-bold text-slate-800">Career Guidance</p>
+                <p class="text-[11px] text-slate-500">Interview Ready</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Graphic Visual -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="relative w-full max-w-lg">
+            <div class="absolute -top-6 -left-6 w-72 h-72 bg-indigo-300/30 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-6 -right-6 w-72 h-72 bg-emerald-300/30 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative bg-white/80 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-6 shadow-2xl">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                  <span class="ml-2 text-xs font-mono text-slate-400">hifi_learning_hub.py</span>
+                </div>
+                <span class="text-xs px-2.5 py-1 rounded bg-indigo-50 text-indigo-600 font-semibold">Live Interactive</span>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs space-y-2 relative overflow-hidden">
+                  <div class="text-emerald-400"># HiFi EdTech Hands-On Project</div>
+                  <div><span class="text-purple-400">import</span> pandas <span class="text-purple-400">as</span> pd</div>
+                  <div><span class="text-purple-400">import</span> ai_models</div>
+                  <div class="pt-2 text-indigo-300">df = pd.read_csv(<span class="text-amber-300">"career_growth.csv"</span>)</div>
+                  <div class="text-emerald-400">model = ai_models.train(skills=<span class="text-amber-300">"High_Demand"</span>)</div>
+                  <div class="text-blue-300">print(<span class="text-amber-300">"Learner status: Job Ready 🚀"</span>)</div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="p-3 bg-indigo-50/80 rounded-xl border border-indigo-100 flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-indigo-600 text-white">
+                      <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <p class="text-xs text-slate-500 font-medium">Analytics</p>
+                      <p class="text-sm font-extrabold text-slate-800">100% Practical</p>
+                    </div>
+                  </div>
+
+                  <div class="p-3 bg-teal-50/80 rounded-xl border border-teal-100 flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-teal-600 text-white">
+                      <i data-lucide="cpu" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <p class="text-xs text-slate-500 font-medium">Generative AI</p>
+                      <p class="text-sm font-extrabold text-slate-800">Latest Tools</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex items-center justify-between text-xs text-slate-600 bg-slate-50 p-3 rounded-xl">
+                  <div class="flex -space-x-2">
+                    <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Student">
+                    <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Student">
+                    <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Student">
+                  </div>
+                  <div class="flex items-center gap-1 font-semibold text-slate-700">
+                    <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                    <span>4.9/5 Student Rating</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-extrabold text-indigo-600 uppercase tracking-widest">About HiFi EdTech</h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Empowering Learners for the Digital Future
+        </h3>
+        <p class="text-base sm:text-lg text-slate-600 leading-relaxed pt-2">
+          HiFi EdTech is a modern learning platform designed to help students, graduates, freshers, and professionals build practical technology and career skills. Our approach combines structured learning, hands-on projects, industry-oriented tools, and continuous guidance to help learners become job-ready.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
+        <div class="p-8 rounded-2xl bg-gradient-to-b from-slate-50 to-indigo-50/30 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-200">
+            <i data-lucide="code" class="w-6 h-6"></i>
+          </div>
+          <h4 className="text-xl font-bold text-slate-900">Practical Learning</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Learn by working on real-world examples and projects rather than purely memorizing theoretical concepts.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-gradient-to-b from-slate-50 to-indigo-50/30 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-200">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+          </div>
+          <h4 className="text-xl font-bold text-slate-900">Industry Skills</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Develop skills and hands-on familiarity that are directly relevant to today's technology-driven workplace.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-gradient-to-b from-slate-50 to-indigo-50/30 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-md shadow-teal-200">
+            <i data-lucide="briefcase" class="w-6 h-6"></i>
+          </div>
+          <h4 className="text-xl font-bold text-slate-900">Career Focus</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Build projects, improve your resume, prepare for interviews, and develop essential professional confidence.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <button onclick="toggleLeadModal(true)" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition-all">
+          Learn More About Us
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section id="courses" class="py-20 bg-slate-100/70 border-y border-slate-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="px-3.5 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+          Course Catalog
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Explore Our Courses
+        </h2>
+        <p class="text-base text-slate-600">
+          Learn the skills that can help you build your next career opportunity.
+        </p>
+      </div>
+
+      <!-- Course Cards Container populated via JavaScript -->
+      <div id="coursesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"></div>
+
+      <div class="mt-14 text-center">
+        <button onclick="toggleLeadModal(true)" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
+          View All Courses →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose HiFi EdTech Section -->
+  <section id="why-hifi" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <h2 class="text-xs font-extrabold text-indigo-600 uppercase tracking-widest">The HiFi Advantage</h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Why Learn With HiFi EdTech?
+        </h3>
+        <p class="text-slate-600 text-base">
+          We focus on practical execution, career clarity, and continuous mentor support.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+        <div class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-200 shadow-xs hover:shadow-lg transition-all space-y-3 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <i data-lucide="code" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900">Practical Training</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Learn by doing instead of only studying theory with our hands-on curriculum.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-200 shadow-xs hover:shadow-lg transition-all space-y-3 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <i data-lucide="briefcase" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900">Real-World Projects</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Build portfolio projects that demonstrate your practical skills to prospective employers.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-200 shadow-xs hover:shadow-lg transition-all space-y-3 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900">Industry-Relevant Curriculum</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Keep learning focused on modern tools, stacks, and technologies used in tech companies.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-200 shadow-xs hover:shadow-lg transition-all space-y-3 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900">Expert Guidance</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Get structured guidance, code reviews, and mentorship throughout your learning journey.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-200 shadow-xs hover:shadow-lg transition-all space-y-3 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <i data-lucide="award" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900">Career Preparation</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Resume crafting, LinkedIn optimization, interview practice, and career confidence building.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-200 shadow-xs hover:shadow-lg transition-all space-y-3 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900">Flexible Learning</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Provide learning options suitable for students, freshers, and working professionals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Journey Roadmap Section -->
+  <section class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="px-3.5 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-bold uppercase tracking-wider">
+          Structured Roadmap
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          Your Learning Journey
+        </h2>
+        <p class="text-slate-400 text-base">
+          A step-by-step path engineered to help you transition from beginner to career-ready professional.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-600 text-white">Step 1</span>
+              <span class="text-2xl font-black text-slate-700 group-hover:text-indigo-400/40 transition-colors">01</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Choose Your Course</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Explore courses and select the skill path that matches your career goal.</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-600 text-white">Step 2</span>
+              <span class="text-2xl font-black text-slate-700 group-hover:text-indigo-400/40 transition-colors">02</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Learn the Fundamentals</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Build a strong foundation through structured lessons and practical guidance.</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-600 text-white">Step 3</span>
+              <span class="text-2xl font-black text-slate-700 group-hover:text-indigo-400/40 transition-colors">03</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Practice</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Solve hands-on exercises, quizzes, and work with practical coding examples.</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-600 text-white">Step 4</span>
+              <span class="text-2xl font-black text-slate-700 group-hover:text-indigo-400/40 transition-colors">04</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Build Projects</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Create real-world capstone projects to showcase in your portfolio.</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-600 text-white">Step 5</span>
+              <span class="text-2xl font-black text-slate-700 group-hover:text-indigo-400/40 transition-colors">05</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Prepare for Your Career</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Improve your resume, interview skills, and professional online profile.</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-600 text-white">Step 6</span>
+              <span class="text-2xl font-black text-slate-700 group-hover:text-indigo-400/40 transition-colors">06</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Start Your Journey</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Use your skills to pursue internships, jobs, freelance work, or advanced tech roles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-indigo-100 transition-all">
+          <div class="inline-flex items-center justify-center p-3 rounded-xl bg-indigo-600 text-white mb-3 shadow-md shadow-indigo-100">
+            <i data-lucide="users" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">1,000+</div>
+          <div class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Active Learners</div>
+        </div>
+
+        <div class="text-center p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-indigo-100 transition-all">
+          <div class="inline-flex items-center justify-center p-3 rounded-xl bg-indigo-600 text-white mb-3 shadow-md shadow-indigo-100">
+            <i data-lucide="book-open" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">20+</div>
+          <div class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Industry Courses</div>
+        </div>
+
+        <div class="text-center p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-indigo-100 transition-all">
+          <div class="inline-flex items-center justify-center p-3 rounded-xl bg-indigo-600 text-white mb-3 shadow-md shadow-indigo-100">
+            <i data-lucide="code" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">50+</div>
+          <div class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Practical Projects</div>
+        </div>
+
+        <div class="text-center p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-indigo-100 transition-all">
+          <div class="inline-flex items-center justify-center p-3 rounded-xl bg-indigo-600 text-white mb-3 shadow-md shadow-indigo-100">
+            <i data-lucide="star" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">95%</div>
+          <div class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">Learner Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <h2 class="text-xs font-extrabold text-indigo-600 uppercase tracking-widest">Student Feedback</h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">What Our Learners Say</h3>
+        <p class="text-slate-600 text-base">Real stories from learners who transformed their technical capabilities with HiFi EdTech.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
+        <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex gap-1 text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-slate-700 text-sm leading-relaxed italic">
+              "HiFi EdTech helped me understand technology concepts through practical projects instead of just theory. The hands-on modules made learning fun and effective."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Arjun R." class="w-10 h-10 rounded-full object-cover border border-indigo-200">
+            <div>
+              <h4 class="text-sm font-bold text-slate-900">Arjun R.</h4>
+              <p class="text-xs text-indigo-600 font-medium">Data Analytics Learner</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex gap-1 text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-slate-700 text-sm leading-relaxed italic">
+              "The learning structure and project-based approach helped me become much more confident about taking up tech interviews and building my own projects."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" alt="Priya K." class="w-10 h-10 rounded-full object-cover border border-indigo-200">
+            <div>
+              <h4 class="text-sm font-bold text-slate-900">Priya K.</h4>
+              <p class="text-xs text-indigo-600 font-medium">Python Programming Learner</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex gap-1 text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-slate-700 text-sm leading-relaxed italic">
+              "The courses are easy to follow and deeply focused on practical, job-ready skills. I built 3 live dashboards that impressed my recruiters!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" alt="Rahul M." class="w-10 h-10 rounded-full object-cover border border-indigo-200">
+            <div>
+              <h4 class="text-sm font-bold text-slate-900">Rahul M.</h4>
+              <p class="text-xs text-indigo-600 font-medium">Power BI Learner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-12">
+        <span class="px-3.5 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+          Have Questions?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+        <p class="text-slate-600 text-base">Find answers to common questions about courses, eligibility, and learning formats.</p>
+      </div>
+
+      <div id="faqContainer" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- Contact & CTA Section -->
+  <section id="contact" class="py-20 bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <span class="px-3.5 py-1.5 rounded-full bg-indigo-500/30 text-indigo-300 border border-indigo-400/30 text-xs font-bold uppercase tracking-wider">
+            Start Today
+          </span>
+          <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            Ready to Build Your Future?
+          </h2>
+          <p class="text-indigo-200 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+            Start learning practical, industry-relevant skills with HiFi EdTech. Get guided mentorship and portfolio projects.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#courses" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base transition-all shadow-lg shadow-indigo-600/30 text-center">
+              Explore Courses
+            </a>
+            <button onclick="toggleChatbot(true)" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-base flex items-center justify-center gap-2 border border-white/20 backdrop-blur-sm transition-all">
+              <i data-lucide="bot" class="w-5 h-5 text-indigo-400"></i>
+              Talk to AI Mentor
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/15 space-y-6">
+          <h3 class="text-xl font-bold text-white border-b border-white/10 pb-4">Contact HiFi EdTech</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="p-3 rounded-xl bg-indigo-600/50 text-indigo-200">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs text-indigo-300 font-medium">Email Us</p>
+                <p class="text-sm font-semibold text-white">hello@hifiedtech.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="p-3 rounded-xl bg-indigo-600/50 text-indigo-200">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs text-indigo-300 font-medium">Phone Support</p>
+                <p class="text-sm font-semibold text-white">+91 98765 43210</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="p-3 rounded-xl bg-indigo-600/50 text-indigo-200">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs text-indigo-300 font-medium">Campus Location</p>
+                <p class="text-sm font-semibold text-white">HiTech City, Hyderabad, Telangana 500081, India</p>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="toggleLeadModal(true)" class="w-full py-3 rounded-xl bg-white text-slate-900 font-bold text-sm hover:bg-indigo-50 transition-colors">
+            Request Call Back
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+            </div>
+            <span class="font-extrabold text-xl text-white">HiFi EdTech</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">Learn Today. Build Tomorrow.</p>
+          <p class="text-xs text-slate-500">
+            HiFi EdTech is an education and technology training institute focused on helping students, graduates, and professionals develop practical skills.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">Quick Links</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#courses" class="hover:text-white transition-colors">Courses</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">Our Programs</h4>
+          <ul id="footerCoursesList" class="space-y-2 text-xs"></ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">Headquarters</h4>
+          <p class="text-xs">HiTech City, Hyderabad, Telangana 500081, India</p>
+          <p class="text-xs">Email: hello@hifiedtech.com</p>
+          <p class="text-xs">Phone: +91 98765 43210</p>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 HiFi EdTech. All Rights Reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-400 transition-colors">Terms & Conditions</a>
+          <a href="#" class="hover:text-slate-400 transition-colors">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AI CHATBOT WIDGET -->
+  <button id="chatbotTriggerBtn" onclick="toggleChatbot(true)" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-bold text-sm shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 group" aria-label="Open HiFi AI Mentor Chat">
+    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center animate-pulse">
+      <i data-lucide="bot" class="w-5 h-5 text-white"></i>
+    </div>
+    <span>🤖 HiFi AI Mentor</span>
+  </button>
+
+  <!-- Chatbot Window -->
+  <div id="chatbotContainer" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[580px] max-h-[85vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+    <!-- Header -->
+    <div class="p-4 bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-900 text-white flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md">
+          <i data-lucide="bot" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-base">HiFi AI Mentor</h3>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          </div>
+          <p class="text-[11px] text-indigo-200">Ask about courses, skills & careers</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1">
+        <button onclick="clearChatHistory()" title="Clear Chat" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
+          <i data-lucide="trash-2" class="w-4 h-4"></i>
+        </button>
+        <button onclick="toggleChatbot(false)" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/60"></div>
+
+    <!-- Quick Prompts Section -->
+    <div id="quickPromptsContainer" class="px-4 py-2 bg-white border-t border-slate-100 flex flex-wrap gap-1.5 overflow-x-auto">
+      <span class="text-[10px] font-bold text-slate-400 uppercase w-full mb-0.5">Quick Prompts:</span>
+      <button onclick="sendQuickPrompt('Which course is best for me?')" class="text-xs px-2.5 py-1 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium transition-colors">Which course is best for me?</button>
+      <button onclick="sendQuickPrompt('Tell me about Data Analytics')" class="text-xs px-2.5 py-1 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium transition-colors">Tell me about Data Analytics</button>
+      <button onclick="sendQuickPrompt('What courses are available?')" class="text-xs px-2.5 py-1 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium transition-colors">What courses are available?</button>
+      <button onclick="sendQuickPrompt('I am a beginner. What should I learn?')" class="text-xs px-2.5 py-1 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium transition-colors">I am a beginner. What should I learn?</button>
+    </div>
+
+    <!-- Input Form -->
+    <div class="p-3 bg-white border-t border-slate-200">
+      <form id="chatForm" onsubmit="handleChatSubmit(event)" class="flex items-center gap-2">
+        <textarea id="chatInput" placeholder="Type your question..." rows="1" class="flex-1 px-3.5 py-2.5 text-sm bg-slate-100 border border-transparent rounded-xl focus:bg-white focus:border-indigo-500 focus:outline-none resize-none max-h-24"></textarea>
+        <button type="submit" id="sendBtn" class="p-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white font-semibold transition-all shadow-md shadow-indigo-200">
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+      </form>
+      <p class="text-[10px] text-center text-slate-400 mt-2">
+        Connected to HiFi n8n AI Engine
+      </p>
+    </div>
+  </div>
+
+  <!-- Course Detail Modal -->
+  <div id="courseModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCourseModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-500 hover:text-slate-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-2">
+        <span id="modalCategory" class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-700"></span>
+        <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-slate-900"></h3>
+        <p class="text-sm font-semibold text-slate-500">
+          Level: <span id="modalLevel"></span> • Duration: <span id="modalDuration" class="text-indigo-600 font-bold"></span>
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Course Overview</h4>
+        <p id="modalDescription" class="text-slate-600 text-sm leading-relaxed"></p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Skills & Technologies Included</h4>
+        <div id="modalSkills" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+        <h4 class="text-sm font-bold text-slate-900">Key Highlights</h4>
+        <ul id="modalHighlights" class="space-y-2"></ul>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 pt-4">
+        <button id="modalEnrollBtn" class="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm text-center shadow-md shadow-indigo-200">
+          Enroll / Request Details
+        </button>
+        <button id="modalAskAiBtn" class="py-3 px-5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm flex items-center justify-center gap-2">
+          <i data-lucide="bot" class="w-4 h-4 text-indigo-600"></i> Ask AI Mentor
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lead Modal -->
+  <div id="leadModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+      <button onclick="toggleLeadModal(false)" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="leadFormContainer">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-slate-900">Request Information</h3>
+          <p class="text-slate-500 text-xs mt-1">Get detailed syllabus, batch timings, and career guidance.</p>
+        </div>
+
+        <form onsubmit="handleLeadSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+            <input required type="text" id="leadName" placeholder="Enter your name" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+            <input required type="email" id="leadEmail" placeholder="name@example.com" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
+            <input required type="tel" id="leadPhone" placeholder="+91 98765 43210" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Interested Course</label>
+            <select id="leadCourse" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600 bg-white"></select>
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-200 transition-colors">
+            Submit Request
+          </button>
+        </form>
+      </div>
+
+      <div id="leadSuccessContainer" class="hidden py-8 text-center space-y-3">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+          <i data-lucide="check" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900">Thank You!</h3>
+        <p class="text-slate-600 text-sm">
+          Our admissions team will reach out to you shortly with course details.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Engine -->
+  <script>
+    // Configuration Data
+    const N8N_WEBHOOK_URL = "https://rameshyadav.app.n8n.cloud/webhook/f315afd7-b1ec-43de-be5c-ee135e189414/chat";
+
+    const COURSES_DATA = [
+      {
+        id: "data-analytics",
+        title: "Data Analytics",
+        category: "Data & Technology",
+        level: "Beginner → Advanced",
+        duration: "4 Months",
+        badge: "Popular",
+        description: "Learn Excel, SQL, Python, Power BI, data cleaning, visualization, dashboards, statistics, and practical analytics through hands-on projects.",
+        skills: ["Excel", "SQL", "Python", "Power BI", "Statistics", "Data Visualization"],
+        highlights: ["10+ Live Case Studies", "Capstone Dashboard Project", "Resume Building"],
+        icon: "bar-chart-3"
+      },
+      {
+        id: "python-programming",
+        title: "Python Programming",
+        category: "Programming",
+        level: "Beginner",
+        duration: "3 Months",
+        badge: "Essential",
+        description: "Learn Python programming from fundamentals to practical application development, object-oriented principles, and automation scripts.",
+        skills: ["Python Basics", "Functions", "OOP", "File Handling", "Error Handling", "Projects"],
+        highlights: ["Build 5 Real Applications", "Git & GitHub Workflow", "Logic Building Practice"],
+        icon: "code"
+      },
+      {
+        id: "full-stack-web-dev",
+        title: "Full Stack Web Development",
+        category: "Development",
+        level: "Beginner → Advanced",
+        duration: "6 Months",
+        badge: "High Demand",
+        description: "Learn how to design, develop, and deploy modern web applications using the MERN/modern JS ecosystem.",
+        skills: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Databases"],
+        highlights: ["Frontend & Backend Mastery", "Full-Stack E-Commerce Project", "API Integration"],
+        icon: "layers"
+      },
+      {
+        id: "ai-generative-ai",
+        title: "Artificial Intelligence & Generative AI",
+        category: "AI",
+        level: "Intermediate",
+        duration: "4 Months",
+        badge: "Trending",
+        description: "Learn AI fundamentals, Generative AI concepts, prompt engineering, AI tools, APIs, automation, and practical AI projects.",
+        skills: ["AI Fundamentals", "Generative AI", "Prompt Engineering", "APIs", "AI Automation", "Projects"],
+        highlights: ["Build Custom AI Agents", "LLM API Integration", "Future-proof Skills"],
+        icon: "cpu"
+      },
+      {
+        id: "power-bi-bi",
+        title: "Power BI & Business Intelligence",
+        category: "Data & Business Intelligence",
+        level: "Beginner → Intermediate",
+        duration: "2 Months",
+        badge: "Fast Track",
+        description: "Learn how to transform raw business data into interactive dashboards, KPI reports, and actionable business insights.",
+        skills: ["Power Query", "Data Modeling", "DAX", "Dashboard Design", "KPIs", "Data Visualization"],
+        highlights: ["Real Corporate Data Sets", "DAX Mastery", "Interactive Reporting"],
+        icon: "database"
+      },
+      {
+        id: "digital-marketing",
+        title: "Digital Marketing",
+        category: "Marketing",
+        level: "Beginner",
+        duration: "3 Months",
+        badge: "Career Path",
+        description: "Learn digital marketing fundamentals, SEO, social media marketing, content strategy, performance analytics, and campaign execution.",
+        skills: ["SEO", "Social Media", "Content Marketing", "Analytics", "Campaign Strategy"],
+        highlights: ["Live Campaign Execution", "Google Analytics 4", "Meta Ads Basics"],
+        icon: "target"
+      }
+    ];
+
+    const FAQ_DATA = [
+      {
+        question: "Who can join HiFi EdTech?",
+        answer: "Students, graduates, freshers, working professionals, and anyone interested in developing practical technology and career skills are welcome to join."
+      },
+      {
+        question: "Do I need prior programming knowledge?",
+        answer: "Not necessarily! Several of our courses like Python Basics, Data Analytics, and Digital Marketing are specifically designed for complete beginners with zero prior coding experience."
+      },
+      {
+        question: "Are the courses project-based?",
+        answer: "Yes! Every course at HiFi EdTech emphasizes learning by doing. You will build practical exercises, assignments, and portfolio-ready capstone projects."
+      },
+      {
+        question: "Will I receive a certificate?",
+        answer: "Course certification information and verification credentials will be awarded upon successful completion of course projects and requirements."
+      },
+      {
+        question: "Can I speak to HiFi EdTech before choosing a course?",
+        answer: "Absolutely. You can talk directly with our HiFi AI Mentor on this page, or contact our admissions counselors through phone/email for personalized guidance."
+      },
+      {
+        question: "How can I choose the right course?",
+        answer: "You can ask our HiFi AI Mentor for recommendations based on your background, interest, and career goals, or request a quick call back from our academic advisors."
+      }
+    ];
+
+    // Chatbot State Variable
+    let chatMessages = [
+      {
+        id: 'init-1',
+        sender: 'ai',
+        text: "Hi! 👋 I'm the HiFi AI Mentor. I can help you choose a course, understand course details, and answer questions about HiFi EdTech. What would you like to know?",
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    ];
+    let isTyping = false;
+    let sessionId = '';
+    let activeFaqIndex = null;
+
+    // Initialize application on DOM load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Setup Session ID for AI Chatbot
+      let existingSession = sessionStorage.getItem('hifi_chat_session_id');
+      if (!existingSession) {
+        existingSession = 'hifi_session_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now();
+        sessionStorage.setItem('hifi_chat_session_id', existingSession);
+      }
+      sessionId = existingSession;
+
+      renderCourses();
+      renderFAQs();
+      renderFooterCourses();
+      populateLeadCourseSelect();
+      renderChatMessages();
+
+      // Enter key handler for chat textarea
+      const chatInput = document.getElementById('chatInput');
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          handleChatSubmit(e);
+        }
+      });
+
+      lucide.createIcons();
+    });
+
+    // Render Courses Grid
+    function renderCourses() {
+      const container = document.getElementById('coursesContainer');
+      container.innerHTML = COURSES_DATA.map(course => `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1">
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 text-slate-600">
+                ${course.category}
+              </span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100">
+                ${course.badge}
+              </span>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="p-2.5 rounded-xl bg-indigo-600 text-white shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                <i data-lucide="${course.icon}" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  ${course.title}
+                </h3>
+                <p class="text-xs font-medium text-slate-500 mt-0.5">
+                  ${course.level} • <span class="text-indigo-600 font-semibold">${course.duration}</span>
+                </p>
+              </div>
+            </div>
+
+            <p class="text-slate-600 text-sm leading-relaxed line-clamp-3">
+              ${course.description}
+            </p>
+
+            <div>
+              <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Key Skills Covered:</p>
+              <div class="flex flex-wrap gap-1.5">
+                ${course.skills.map(skill => `
+                  <span class="text-[11px] font-medium px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200/60">
+                    ${skill}
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between">
+            <button onclick="openCourseModal('${course.id}')" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors">
+              View Course
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render FAQ Accordion
+    function renderFAQs() {
+      const container = document.getElementById('faqContainer');
+      container.innerHTML = FAQ_DATA.map((faq, index) => `
+        <div class="rounded-xl border border-slate-200 bg-slate-50/50 overflow-hidden transition-all">
+          <button onclick="toggleFaq(${index})" class="w-full text-left p-5 flex items-center justify-between font-bold text-slate-900 text-base sm:text-lg hover:bg-slate-100/60 transition-colors">
+            <span>${faq.question}</span>
+            <i data-lucide="${activeFaqIndex === index ? 'chevron-up' : 'chevron-down'}" class="w-5 h-5 ${activeFaqIndex === index ? 'text-indigo-600' : 'text-slate-400'} shrink-0"></i>
+          </button>
+          ${activeFaqIndex === index ? `
+            <div class="p-5 pt-0 text-slate-600 text-sm leading-relaxed border-t border-slate-100 bg-white">
+              ${faq.answer}
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function toggleFaq(index) {
+      activeFaqIndex = activeFaqIndex === index ? null : index;
+      renderFAQs();
+    }
+
+    function renderFooterCourses() {
+      const list = document.getElementById('footerCoursesList');
+      list.innerHTML = COURSES_DATA.map(c => `
+        <li>
+          <button onclick="openCourseModal('${c.id}')" class="hover:text-white transition-colors text-left">
+            ${c.title}
+          </button>
+        </li>
+      `).join('');
+    }
+
+    function populateLeadCourseSelect() {
+      const select = document.getElementById('leadCourse');
+      select.innerHTML = COURSES_DATA.map(c => `<option value="${c.title}">${c.title}</option>`).join('');
+    }
+
+    // Mobile Navigation Drawer Controller
+    function toggleMobileMenu(forceState) {
+      const menu = document.getElementById('mobileMenu');
+      const isHidden = menu.classList.contains('hidden');
+      const newState = forceState !== undefined ? forceState : isHidden;
+
+      if (newState) {
+        menu.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+      }
+    }
+
+    // Course Modal Functions
+    function openCourseModal(courseId) {
+      const course = COURSES_DATA.find(c => c.id === courseId);
+      if (!course) return;
+
+      document.getElementById('modalCategory').innerText = course.category;
+      document.getElementById('modalTitle').innerText = course.title;
+      document.getElementById('modalLevel').innerText = course.level;
+      document.getElementById('modalDuration').innerText = course.duration;
+      document.getElementById('modalDescription').innerText = course.description;
+
+      document.getElementById('modalSkills').innerHTML = course.skills.map(s => `
+        <span class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 border border-slate-200">
+          ${s}
+        </span>
+      `).join('');
+
+      document.getElementById('modalHighlights').innerHTML = course.highlights.map(h => `
+        <li class="flex items-center gap-2 text-xs font-medium text-slate-700">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+          <span>${h}</span>
+        </li>
+      `).join('');
+
+      document.getElementById('modalEnrollBtn').onclick = () => {
+        closeCourseModal();
+        document.getElementById('leadCourse').value = course.title;
+        toggleLeadModal(true);
+      };
+
+      document.getElementById('modalAskAiBtn').onclick = () => {
+        closeCourseModal();
+        toggleChatbot(true);
+        sendChatMessage(`Tell me more details about the ${course.title} course.`);
+      };
+
+      document.getElementById('courseModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeCourseModal() {
+      document.getElementById('courseModal').classList.add('hidden');
+    }
+
+    // Lead Modal Functions
+    function toggleLeadModal(show) {
+      const modal = document.getElementById('leadModal');
+      if (show) {
+        document.getElementById('leadFormContainer').classList.remove('hidden');
+        document.getElementById('leadSuccessContainer').classList.add('hidden');
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function handleLeadSubmit(e) {
+      e.preventDefault();
+      document.getElementById('leadFormContainer').classList.add('hidden');
+      document.getElementById('leadSuccessContainer').classList.remove('hidden');
+      setTimeout(() => {
+        toggleLeadModal(false);
+      }, 2000);
+    }
+
+    // Chatbot UI Toggle
+    function toggleChatbot(show) {
+      const container = document.getElementById('chatbotContainer');
+      const triggerBtn = document.getElementById('chatbotTriggerBtn');
+
+      if (show) {
+        container.classList.remove('hidden');
+        container.classList.add('flex');
+        triggerBtn.classList.add('hidden');
+        scrollChatToBottom();
+      } else {
+        container.classList.add('hidden');
+        container.classList.remove('flex');
+        triggerBtn.classList.remove('hidden');
+      }
+    }
+
+    // Render Chat Messages List
+    function renderChatMessages() {
+      const container = document.getElementById('chatMessages');
+      container.innerHTML = chatMessages.map(msg => `
+        <div class="flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}">
+          <div class="max-w-[82%] p-3.5 rounded-2xl text-sm leading-relaxed ${
+            msg.sender === 'user'
+              ? 'bg-indigo-600 text-white rounded-br-none shadow-xs'
+              : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-xs'
+          }">
+            <p class="whitespace-pre-wrap">${msg.text}</p>
+            <div class="text-[10px] mt-1 text-right ${msg.sender === 'user' ? 'text-indigo-200' : 'text-slate-400'}">
+              ${msg.timestamp}
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      if (isTyping) {
+        container.innerHTML += `
+          <div class="flex justify-start">
+            <div class="bg-white border border-slate-200 rounded-2xl p-3.5 rounded-bl-none flex items-center gap-1.5 shadow-xs">
+              <span class="w-2 h-2 bg-indigo-600 rounded-full animate-bounce"></span>
+              <span class="w-2 h-2 bg-indigo-600 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+              <span class="w-2 h-2 bg-indigo-600 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+              <span class="text-xs text-slate-400 font-medium ml-2">Mentor thinking...</span>
+            </div>
+          </div>
+        `;
+      }
+
+      const quickPrompts = document.getElementById('quickPromptsContainer');
+      if (chatMessages.length > 2) {
+        quickPrompts.classList.add('hidden');
+      } else {
+        quickPrompts.classList.remove('hidden');
+      }
+
+      scrollChatToBottom();
+    }
+
+    function scrollChatToBottom() {
+      const container = document.getElementById('chatMessages');
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function clearChatHistory() {
+      chatMessages = [
+        {
+          id: 'init-clear',
+          sender: 'ai',
+          text: "Chat cleared! How else can I assist you with HiFi EdTech courses?",
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+      ];
+      renderChatMessages();
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text || isTyping) return;
+      input.value = '';
+      sendChatMessage(text);
+    }
+
+    function sendQuickPrompt(promptText) {
+      if (isTyping) return;
+      sendChatMessage(promptText);
+    }
+
+    // Primary AI Webhook Handler with Smart Fallback Response
+    async function sendChatMessage(textMessage) {
+      const userMsg = {
+        id: Date.now().toString(),
+        sender: 'user',
+        text: textMessage,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      chatMessages.push(userMsg);
+      isTyping = true;
+      renderChatMessages();
+
+      try {
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: textMessage,
+            sessionId: sessionId || 'hifi_default_session',
+            source: 'hifi-edtech-website-html',
+            timestamp: new Date().toISOString()
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          let replyText = "";
+          if (typeof data === 'string') {
+            replyText = data;
+          } else if (data.reply) {
+            replyText = data.reply;
+          } else if (data.output) {
+            replyText = data.output;
+          } else if (data.text) {
+            replyText = data.text;
+          } else if (Array.isArray(data) && data[0]?.reply) {
+            replyText = data[0].reply;
+          } else {
+            replyText = JSON.stringify(data);
+          }
+
+          chatMessages.push({
+            id: (Date.now() + 1).toString(),
+            sender: 'ai',
+            text: replyText || "Thank you for reaching out! I've received your query.",
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          });
+        } else {
+          throw new Error(`Server responded with status: ${response.status}`);
+        }
+      } catch (err) {
+        console.warn("n8n Webhook notice:", err);
+        let fallbackText = getSmartFallbackResponse(textMessage);
+        
+        await new Promise(resolve => setTimeout(resolve, 700));
+        chatMessages.push({
+          id: (Date.now() + 1).toString(),
+          sender: 'ai',
+          text: fallbackText,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+      } finally {
+        isTyping = false;
+        renderChatMessages();
+      }
+    }
+
+    // Smart Fallback Generator
+    function getSmartFallbackResponse(query) {
+      const q = query.toLowerCase();
+      if (q.includes('data analytics') || q.includes('excel') || q.includes('sql') || q.includes('power bi')) {
+        return "Data Analytics is one of our most popular 4-month programs! You will master Excel, SQL, Python, Power BI, and build 3 capstone dashboards. Ideal for both tech and non-tech backgrounds.";
+      } else if (q.includes('python') || q.includes('programming') || q.includes('coding')) {
+        return "Our 3-Month Python Programming course takes you step-by-step from core syntax and logic building to OOP, file handling, and real application development.";
+      } else if (q.includes('web') || q.includes('full stack') || q.includes('react')) {
+        return "The Full Stack Web Development course lasts 6 months and covers HTML/CSS, JavaScript, React, Node.js, and database integration. You will build a complete web application!";
+      } else if (q.includes('ai') || q.includes('generative') || q.includes('prompt')) {
+        return "Our Artificial Intelligence & Generative AI program covers prompt engineering, LLM integration, custom AI automation agents, and hands-on API projects over 4 months.";
+      } else if (q.includes('beginner') || q.includes('start') || q.includes('first')) {
+        return "If you are a beginner, we recommend starting with either Python Programming (for software paths) or Data Analytics (for data & business insights). Both require no prior coding experience!";
+      } else if (q.includes('fee') || q.includes('cost') || q.includes('price')) {
+        return "HiFi EdTech offers affordable, student-friendly fee structures with flexible EMI options. Click 'Request Call Back' or speak with our counselors to receive the detailed fee breakdown for your chosen course.";
+      } else {
+        return "Thanks for asking! HiFi EdTech offers practical, job-oriented training in Data Analytics, Python, Web Dev, AI, Power BI, and Digital Marketing. Would you like details on a specific course or a callback from our mentor?";
+      }
+    }
+  </script>
+</body>
+</html>
+
