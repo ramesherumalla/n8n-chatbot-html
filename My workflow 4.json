@@ -1,0 +1,98 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "mode": "webhook",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8a0b62f7-38a8-4b6f-b04b-362b3f5cc91c",
+      "name": "When chat message received",
+      "webhookId": "f315afd7-b1ec-43de-be5c-ee135e189414"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "messageValues": [
+            {
+              "message": "you behave like a mentor with 3 years of experience in a python.\ngive answers in only two sentences of explaination."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        224,
+        0
+      ],
+      "id": "839cd413-8835-4a86-a070-ba0fb5b93a07",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        208
+      ],
+      "id": "9edbc5f9-c715-4fbe-9864-86d12a7121f3",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "EcXj73zdq8iQlvp1",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "909091d1-a998-4be2-af79-7529c1e316b1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ffa4691b7d92ad9a871118b1c97c4e4848a35cbfe2a1ebd1d83aa9588cab6331"
+  },
+  "nodeGroups": [],
+  "id": "4UnI6io0Olydm3Bs",
+  "tags": []
+}
